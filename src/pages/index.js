@@ -10,36 +10,32 @@ import { Container, Row, Col, Card } from "react-bootstrap"
 const IndexPage = ({ data }) => (
   <Layout>
     <Container>
-<Row>
-<h1>Netlify CMS & Gatsby</h1>
-      <ul>
-        {data.fileInformation.edges.map(({ node }) => (
-          <li key={node.id}>
-            {node.base} | {node.prettySize}
-          </li>
+      <Row>
+        <h1>Netlify CMS & Gatsby</h1>
+        <ul>
+          {data.fileInformation.edges.map(({ node }) => (
+            <li key={node.id}>
+              {node.base} | {node.prettySize}
+            </li>
+          ))}
+        </ul>
+        {data.travelLocations.edges.map(({ node }) => (
+          <Col lg={4} xs={6} key={node.id}>
+            <Card>
+              <p>
+                <GatsbyImage
+                  image={getImage(node.frontmatter.featured_image)}
+                  alt={node.frontmatter.title}
+                />
+              </p>
+              <Card.Body>
+                <Card.Title>{node.frontmatter.location}</Card.Title>
+                {node.frontmatter.travel_dates}
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </ul>
-      {data.travelLocations.edges.map(({ node }) => (
-        <Col lg={4} xs ={6} key={node.id}>
-        <Card>
-       
-          <p>
-            <GatsbyImage
-            image={getImage(node.frontmatter.featured_image)}
-            alt={node.frontmatter.location}
-            />
-          </p>
-<Card.Body>
-  <Card.Title>
-  {node.frontmatter.location}
-         
-  </Card.Title>
- {node.frontmatter.travel_dates}
-</Card.Body>
-        </Card>
-        </Col>
-      ))}
-</Row>
+      </Row>
     </Container>
   </Layout>
 )
@@ -69,12 +65,11 @@ export const query = graphql`
         node {
           id
           frontmatter {
-            title
             travel_dates
-            location
+            title
             featured_image {
               childImageSharp {
-                gatsbyImageData(width: 600, aspectRatio: 1.5  )
+                gatsbyImageData(width: 600, aspectRatio: 1.5)
               }
             }
           }
