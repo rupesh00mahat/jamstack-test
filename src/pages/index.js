@@ -74,7 +74,7 @@ export const query = graphql`
             location
             featured_image {
               childImageSharp {
-                gatsbyImageData(width: 600, aspectRatio: 1.5)
+                gatsbyImageData(width: 600, aspectRatio: 1.5  )
               }
             }
           }
