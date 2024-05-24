@@ -29,7 +29,7 @@ const IndexPage = ({ data }) => (
                 />
               </p>
               <Card.Body>
-                <Card.Title>{node.frontmatter.location}</Card.Title>
+                <Card.Title>{node.frontmatter.title}</Card.Title>
                 {node.frontmatter.travel_dates}
               </Card.Body>
             </Card>
